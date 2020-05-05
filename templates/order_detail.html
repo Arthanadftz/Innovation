@@ -5,6 +5,9 @@
   <h2>{{ object.company_name }}</h2>
     <p>by {{ object.user.username }} | {{ object.created }}</p>
     <p>{{ object.data }}</p>
+    {% if object.attribute_name %}
+      <p>{{ object.attribute_name }}</p>
+    {% endif %}
   </div>
 
   <p><a href="{% url 'order_edit' order.pk %}">Edit</a> | <a href="{% url 'order_delete' order.pk %}">Delete</a> | <a href="{% url 'order_calculate' order.pk %}">Calculate</a></p>

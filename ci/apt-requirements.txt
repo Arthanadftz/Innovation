@@ -1,4 +1,5 @@
 gcc
+build-base
 libgcc
 libffi
 libffi-dev
@@ -9,6 +10,7 @@ jpeg-dev
 libpng-dev
 linux-headers
 g++
+freetype-dev
 python3-dev
 postgresql-dev
 libquadmath

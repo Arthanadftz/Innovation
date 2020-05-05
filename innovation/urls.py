@@ -22,11 +22,12 @@ from rest_framework import routers
 from innovation.views import (
     PingView,
     OrderCreateView,
-    OrderleListView,
+    OrderListView,
     OrderDetailView,
     OrderUpdateView,
     OrderDeleteView,
-    OrderCalculateView
+    OrderCalculateView,
+    OrderResultDetailView,
 )
 
 router = routers.DefaultRouter()
@@ -48,8 +49,15 @@ urlpatterns = [
     path('order/<int:pk>/delete/',
          OrderDeleteView.as_view(), name='order_delete'),
     path('order/new/', OrderCreateView.as_view(), name='order_new'),
-    path('order/<int:pk>/calculate/', OrderCalculateView.as_view(), name='order_calculate'),
-    path('order/', OrderleListView.as_view(), name='order_list'),
+    path(
+        'order/<int:pk>/calculate/',
+        OrderCalculateView.as_view(), name='order_calculate'
+    ),
+    path('order/', OrderListView.as_view(), name='order_list'),
+    path(
+        'order_result/<int:pk>/',
+        OrderResultDetailView.as_view(), name='order_result_detail'
+    ),
 ]
 
 if settings.DEBUG:

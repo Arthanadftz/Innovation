@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="article-entry">
+  <h2>{{ object.order.company_name }} | model type: {{ object.order.model_type }} | calculation method: {{ object.order.method }}</h2>
+    <p>by {{ object.order.user.username }} | {{ object.order.created }}</p>
+    <p>Our recommendation:</p>
+    <p>{{ object.recommendation }}</p>
+    <p>Current innovation attractiveness level: {{ object.y_value }}</p>
+    <p>With a probability of {{ object.p_percent }}% {{ object.order.company_name }} is innovatively attractive for investment</p>
+{#    <img src="{{ object.graph_image.name }}" alt="Graph">#}
+    <img src="http://0.0.0.0:9000/innovation/{{ object.graph_image.name }}" alt="Graph">
+  </div>
+  <p>Back to <a href="{% url 'order_detail' object.order.pk %}">your order</a>.</p>
+{% endblock content %}

@@ -10,8 +10,8 @@ This is a test project
 ```
 ## Default admin user login and password
 TODO Please change the password and remove this section from here!  
-user: admin  
-password: x6ja0dqc2fua#v2v  
+user: ****  
+password: ****
 
 ## Automatic documentation
 Automatic documentation is accessible on /admin/doc/

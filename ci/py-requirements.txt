@@ -25,6 +25,7 @@ pandas==1.0.3
 xlrd==1.2.0
 xlsxwriter==1.2.2
 jupyter==1.0.0
+matplotlib==3.2.1
 
 # essential libraries
 requests==2.22.0
