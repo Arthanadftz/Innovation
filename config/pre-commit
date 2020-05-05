@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+PY_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -e '\.py$')
+
+./manage.py check
+pycodestyle $PY_FILES
+pydocstyle $PY_FILES
+python -m mccabe --min 5 $PY_FILES
+pylint --rcfile=.pylintrc $PY_FILES
+bandit $PY_FILES

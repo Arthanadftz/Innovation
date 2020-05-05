@@ -1,0 +1,11 @@
+[MASTER]
+load-plugins=pylint_common
+
+[FORMAT]
+max-line-length=120
+
+[MESSAGES CONTROL]
+disable=r,c,i,missing-docstring,invalid-name
+
+[REPORTS]
+reports=no

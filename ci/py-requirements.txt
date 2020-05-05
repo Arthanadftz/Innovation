@@ -1,0 +1,56 @@
+# core components
+django==3.0.4
+gunicorn==19.9.0
+psycopg2-binary==2.8.3
+
+# linters
+bandit==1.6.2
+pycodestyle==2.4.0
+pydocstyle==4.0.1
+astroid==2.2.5
+pylint==2.3.1
+pylint-common==0.2.5
+pylint-django==2.0.10
+prospector==1.1.7
+
+# utils
+coverage==4.5.4
+docutils==0.15.2
+django-environ==0.4.5
+django-nose==1.4.6
+djangorestframework==3.10.3
+raven==6.10.0
+numpy==1.18.3
+pandas==1.0.3
+xlrd==1.2.0
+xlsxwriter==1.2.2
+jupyter==1.0.0
+
+# essential libraries
+requests==2.22.0
+PySocks==1.7.1
+urllib3==1.25.6
+
+# django extensions
+django-debug-toolbar==2.0
+django-extensions==2.2.3
+django-extra-fields==0.3
+django-json-widget==1.0.0
+django-modeltranslation==0.14.4
+django-minio-storage==0.3.7
+django-crispy-forms==1.9.0
+factory_boy==2.12.0
+
+# debugging
+ipdb==0.12.2
+rpdb==0.1.6
+
+# channels libs
+python-telegram-bot==12.4.2
+
+# images libs
+pillow==7.0.0
+minio==5.0.8
+
+# Scipy
+# scipy==1.4.1

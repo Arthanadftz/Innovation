@@ -1,0 +1,72 @@
+# for development purposes
+version: '3.4'
+
+services:
+  pg:
+    image: postgres:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    command: web
+    env_file:
+      - .env
+    volumes:
+      - 'static:/opt/innovation/static:rw'
+    depends_on:
+      - pg
+
+  minio:
+    image: minio/minio
+    command: server /export
+    environment:
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+    volumes:
+      - minio-data:/export
+      - minio-config:/root/.minio
+
+  createbuckets:
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      while ! /usr/bin/nc minio 9000; do sleep 2s; done;
+      /usr/bin/mc config host add myminio ${MINIO_URL} ${MINIO_ACCESS_KEY}
+      ${MINIO_SECRET_KEY};
+      /usr/bin/mc mb myminio/innovation;
+      /usr/bin/mc policy set download myminio/innovation;
+      mc policy links myminio/innovation --recursive;
+      /usr/bin/mc mb myminio/datasets;
+      /usr/bin/mc policy set download myminio/datasets;
+      mc policy links myminio/datasets --recursive;
+      exit 0;
+      "
+
+  jupyter:
+    build: .
+    command: jupyter
+    env_file:
+      - .env
+    volumes:
+      - "./:/opt/innovation"
+    ports:
+      - 8181:8181
+
+  nginx:
+    image: nginx
+    volumes:
+      - 'static:/opt/innovation/static:ro'
+    depends_on:
+      - web
+
+volumes:
+  pg-data:
+  minio-data:
+  minio-config:
+  static:

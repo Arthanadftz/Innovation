@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<div class="jumbotron">
+  <h1 class="display-4">Innovation App</h1>
+  <p class="lead">AI website built with Django.</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="{% url 'order_list' %}" role="button">My orders</a>
+  </p>
+</div>
+{% endblock content %}

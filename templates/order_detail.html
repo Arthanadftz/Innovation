@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="article-entry">
+  <h2>{{ object.company_name }}</h2>
+    <p>by {{ object.user.username }} | {{ object.created }}</p>
+    <p>{{ object.data }}</p>
+  </div>
+
+  <p><a href="{% url 'order_edit' order.pk %}">Edit</a> | <a href="{% url 'order_delete' order.pk %}">Delete</a> | <a href="{% url 'order_calculate' order.pk %}">Calculate</a></p>
+  <p>Back to <a href="{% url 'order_list' %}">All orders</a>.</p>
+{% endblock content %}
