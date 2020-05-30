@@ -9,7 +9,6 @@ class OrderResult(models.Model):
     p_percent = models.DecimalField(
         max_digits=10, decimal_places=2, blank=True, null=True
     )
-    graph_url = models.URLField(null=True, blank=True)
     graph_image = models.FileField(null=True, blank=True)
 
     def __str__(self):
