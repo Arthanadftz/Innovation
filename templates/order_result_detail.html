@@ -1,15 +1,52 @@
 {% extends 'base.html' %}
 
+{% block title %}Order results{% endblock title %}
+
 {% block content %}
-<div class="article-entry">
-  <h2>{{ object.order.company_name }} | model type: {{ object.order.model_type }} | calculation method: {{ object.order.method }}</h2>
-    <p>by {{ object.order.user.username }} | {{ object.order.created }}</p>
-    <p>Our recommendation:</p>
-    <p>{{ object.recommendation }}</p>
-    <p>Current innovation attractiveness level: {{ object.y_value }}</p>
-    <p>With a probability of {{ object.p_percent }}% {{ object.order.company_name }} is innovatively attractive for investment</p>
-{#    <img src="{{ object.graph_image.name }}" alt="Graph">#}
-    <img src="http://0.0.0.0:9000/innovation/{{ object.graph_image.name }}" alt="Graph">
+  <div class="article-entry mb-5">
+    <div class="card mb-5">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+          <span class="badge badge-pill badge-primary">{{ object.order.company_name }}</span>  Тип модели: <span class="badge badge-pill badge-warning">{{ object.order.model_type }}</span>  Метод расчета: <span class="badge badge-pill badge-success">{{ object.order.method }}</span>
+        </h2>
+      </div>
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <span class="badge badge-primary">{{ object.order.user.username }}</span>  <span class="badge badge-info">{{ object.order.created }}</span>
+        </h5>
+      </div>
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Рекомендация
+          </button>
+        </h5>
+      </div>
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+          <mark>{{ object.recommendation }}</mark>
+        </div>
+      </div>
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Текущий уровень иновационной привлекательности <span class="btn btn-success ml-2">{{ object.y_value }}</span>
+          </button>
+        </h5>
+      </div>
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            С вероятностью <span class="btn btn-success ml-2">{{ object.p_percent }} %</span> <span class="badge badge-pill badge-primary">{{ object.order.company_name }}</span> иновационно привлекательно для инвестирования
+          </button>
+        </h5>
+      </div>
+      <div class="card-body">
+          <img src="http://0.0.0.0:9000/innovation/{{ object.graph_image.name }}" alt="Graph" width="90%" height="90%">
+      </div>
+      <div class="card-header" id="headingOne">
+        <a class="btn btn-info ml-1" href="{% url 'order_detail' object.order.pk %}">Назад</a>   <a class="btn btn-info ml-1" href="{% url 'order_list' %}">Мои заявки</a>
+      </div>
+    </div>
   </div>
-  <p>Back to <a href="{% url 'order_detail' object.order.pk %}">your order</a>.</p>
 {% endblock content %}

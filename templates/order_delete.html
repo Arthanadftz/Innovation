@@ -1,9 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Delete</h1>
-    <form action="" method="post">{% csrf_token %}
-      <p>Are you sure you want to delete order "{{ order.user.username }} from {{ order.created }}"?</p>
-      <button class="btn btn-danger ml-2" type="submit">Confirm</button>
-    </form>
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h1 class="mb-0">
+        Удаление заявки <span class="badge badge-primary">{{ object.company_name }}</span>
+      </h1>
+    </div>
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <form action="" method="post">{% csrf_token %}
+          <p>Вы уверены, что хотите удалить <span class="btn btn-primary ml-1 mr-1">{{ order.company_name }}</span> <span class="badge badge-info">{{ order.created }}</span> ?</p>
+          <button class="btn btn-danger ml-1" type="submit">Удалить</button>
+        </form>
+      </div>
+    </div>
+    <div class="card-header" id="headingOne">
+      <h1 class="mb-0">
+        <a class="btn btn-info ml-1" href="{% url 'order_detail' order.pk %}">Назад</a>
+        <a class="btn btn-info ml-1" href="{% url 'order_list' %}">Мои заявки</a>
+      </h1>
+    </div>
+  </div>
 {% endblock content %}

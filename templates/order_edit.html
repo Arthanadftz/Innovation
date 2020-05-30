@@ -1,9 +1,31 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
+{% block title %}Order edit{% endblock title %}
+
 {% block content %}
-    <h1>Edit</h1>
-    <form action="" method="post">{% csrf_token %}
-      {{ form.as_p }}
-    <button class="btn btn-info ml-2" type="submit">Update</button>
-</form>
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h1 class="mb-0">
+        Изменить заявку <span class="badge badge-primary">{{ object.company_name }}</span>
+      </h1>
+    </div>
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <form action="" method="post">
+          {% csrf_token %}
+{#          {{ form.as_p }}#}
+          {{ form|crispy }}
+          <button class="btn btn-success ml-2" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="card-header" id="headingOne">
+      <h1 class="mb-0">
+        <a class="btn btn-info ml-2" href="{% url 'order_detail' order.pk %}">Назад</a>
+        <a class="btn btn-info ml-2" href="{% url 'order_list' %}">Мои заявки</a>
+      </h1>
+    </div>
+  </div>
 {% endblock content %}

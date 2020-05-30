@@ -2,13 +2,21 @@
 
 {% load crispy_forms_tags %}
 
-{% block title %}Sign Up{% endblock title %}
+{% block title %}Registration{% endblock title %}
 
 {% block content %}
-<h2>Sign Up</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form|crispy }}
-  <button class="btn btn-success" type="submit">Sign Up</button>
-</form>
+  <div class="card">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">Регистрация нового пользовптеля</h2>
+      </div>
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-success" type="submit">Зарегистрироваться</button>
+          </form>
+        </div>
+      </div>
+  </div>
 {% endblock content %}

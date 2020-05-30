@@ -8,7 +8,9 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm):
         model = CustomUser
-        fields = UserCreationForm.Meta.fields
+        fields = [el for el in UserCreationForm.Meta.fields] + [
+            'first_name', 'last_name', 'email'
+        ]
 
 
 class CustomUserChangeForm(UserChangeForm):

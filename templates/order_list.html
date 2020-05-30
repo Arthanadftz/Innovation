@@ -1,24 +1,25 @@
 {% extends 'base.html' %}
 
-{% block title %}Orders{% endblock title %}
+{% block title %}Заявки{% endblock title %}
 
 {% block content %}
   {% for order in object_list %}
     <div class="card">
       <div class="card-header">
         <span class="font-weight-bold">{{ order.company_name }}</span> &middot;
-        <span class="text-muted">by {{ order.user.username }} | {{ order.created }}</span>
+        <span class="text-muted"><span class="badge badge-pill badge-primary">{{ order.user.username }}</span>  <span class="badge badge-pill badge-info">{{ order.created }}</span></span>
       </div>
       <div class="card-body">
-        {{ order.data }}
+        <span class="badge badge-pill badge-success">{{ order.data }}</span>
       </div>
       <div class="card-footer text-center text-muted">
-        <a href="{% url 'order_detail' order.pk %}">Detail</a> |
-        <a href="{% url 'order_edit' order.pk %}">Edit</a> |
-        <a href="{% url 'order_delete' order.pk %}">Delete</a> |
-        <a href="{% url 'order_calculate' order.pk %}">Calculate</a>
+        <a class="btn btn-info ml-1 btn-sm" href="{% url 'order_detail' order.pk %}">Подробнее</a>
+        <a class="btn btn-warning ml-1 btn-sm" href="{% url 'order_edit' order.pk %}">Изменить</a>
+        <a class="btn btn-danger ml-1 btn-sm" href="{% url 'order_delete' order.pk %}">Удалить</a>
+        <a class="btn btn-primary ml-1 btn-sm" href="{% url 'order_calculate' order.pk %}">Расчитать</a>
       </div>
     </div>
     <br />
   {% endfor %}
+  <div class="mb-5"></div>
 {% endblock content %}

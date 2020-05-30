@@ -16,22 +16,40 @@ class Order(models.Model):
     METHOD_CHOICES = [
         (CONVOLUTION, 'Convolution'), (INTERVALS, 'Intervals'), (YEAR, 'Year')
     ]
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        get_user_model(), on_delete=models.CASCADE,
+        verbose_name='Пользователь'
+    )
     company_name = models.CharField(
-        max_length=255, db_index=True, blank=True, null=True
+        max_length=255, db_index=True, blank=True, null=True,
+        verbose_name='Название компании'
     )
-    data = models.FileField(blank=True, null=True)
+    data = models.FileField(
+        blank=True, null=True, verbose_name='Данные о компании'
+    )
     model_type = models.CharField(
-        max_length=128, choices=MODEL_CHOICES, default=PCA)
-    method = models.CharField(
-        max_length=64, choices=METHOD_CHOICES, default=CONVOLUTION
+        max_length=128, choices=MODEL_CHOICES, default=PCA,
+        verbose_name='Тип модели'
     )
-    start_year = models.IntegerField(blank=True, null=True)
-    stop_year = models.IntegerField(blank=True, null=True)
-    created = models.DateTimeField(auto_now=True, db_index=True)
-    build_graphics = models.BooleanField(default=False)
+    method = models.CharField(
+        max_length=64, choices=METHOD_CHOICES, default=CONVOLUTION,
+        verbose_name='Метод расчета'
+    )
+    start_year = models.IntegerField(
+        blank=True, null=True, verbose_name='Год начала интервала'
+    )
+    stop_year = models.IntegerField(
+        blank=True, null=True, verbose_name='Год конца интервала'
+    )
+    created = models.DateTimeField(
+        auto_now=True, db_index=True, verbose_name='Создана'
+    )
+    build_graphics = models.BooleanField(
+        default=False, verbose_name='Построить график тренда'
+    )
     attribute_name = models.CharField(
-        max_length=32, choices=Model.CHOICES, blank=True, null=True
+        max_length=32, choices=Model.CHOICES, blank=True, null=True,
+        verbose_name='Показатель для тренда'
     )
 
     def __str__(self):

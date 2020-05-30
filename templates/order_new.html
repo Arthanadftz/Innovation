@@ -1,9 +1,27 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
+{% block title %}Order new{% endblock title %}
+
 {% block content %}
-    <h1>New order</h1>
-    <form action="" method="post">{% csrf_token %}
-      {{ form.as_p }}
-      <button class="btn btn-success ml-2" type="submit">Save</button>
-    </form>
+  <div class="card mb-5">
+    <div class="card-header" id="headingOne">
+      <h1 class="mb-0">
+        Новая заявка
+      </h1>
+    </div>
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <form action="" method="post">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <button class="btn btn-success ml-1" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="card-header" id="headingOne">
+      <a class="btn btn-info ml-1" href="{% url 'order_list' %}">Мои заявки</a>
+    </div>
+  </div>
 {% endblock content %}

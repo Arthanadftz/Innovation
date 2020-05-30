@@ -1,12 +1,25 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block title %}Log In{% endblock title %}
 
 {% block content %}
-<h2>Log In</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-success ml-2" type="submit">Log In</button>
-</form>
+  <div class="card">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+          Авторизация
+        </h2>
+      </div>
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+{#            {{ form.as_p }}#}
+            {{ form|crispy }}
+            <button class="btn btn-success ml-2" type="submit">Войти</button>
+          </form>
+        </div>
+      </div>
+  </div>
 {% endblock content %}
